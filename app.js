@@ -16,13 +16,14 @@ try {
     console.log("error")
 }
 
-//TODO send bpm to front
+app.get("/bpm",(req,res)=>{
+    //TODO send bpm to front, idealement une moyenne, comme on get depuis le front que toutes les 2sec
+})
 
 setTimeout(()=>{
     const cmd = 'device_subscribe ' + EmpaticaE4.E4_IBI + ' ON \n';
     const cmdBinary = EmpaticaE4.conv(cmd, {in: 'binary'});
     EmpaticaE4.client.write(cmdBinary,'ascii')
-
     EmpaticaE4.client.on("data", (message) => {
         const split = message.toString().split("\n");
         split.forEach(line => {
