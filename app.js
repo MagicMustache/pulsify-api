@@ -8,6 +8,8 @@ const portNumber = 28000
 const ipAddress = '127.0.0.1'
 const deviceID = '484c5c'        //Empatica E4 device ID //543a64 ou 484c5c
 
+app.use(cors())
+
 let count = 0;
 let addedBPM = 0;
 let lastAverageBPM = 0;
@@ -23,14 +25,14 @@ try {
 
 app.get("/bpm", (req,res)=>{
     if (count == 0){
-        res.send(lastAverageBPM)
+        res.send(""+lastAverageBPM)
     }
     else{
         let averageBPM = addedBPM/count
         lastAverageBPM = averageBPM
         count = 0
         addedBPM = 0
-        res.send(averageBPM)
+        res.send(""+averageBPM)
     }
 })
 
