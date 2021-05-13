@@ -29,6 +29,11 @@ app.get("/bpm", (req,res)=>{
     }
     else{
         let averageBPM = addedBPM/count
+        if(averageBPM < 60){
+            averageBPM = 60
+        } else if(averageBPM > 150){
+            averageBPM = 150
+        }
         lastAverageBPM = averageBPM
         count = 0
         addedBPM = 0
